@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        http-equiv="refresh"
+        content="300"
+    >
+
+    <title>
+        ParkEase - Smart Parking
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     NAVBAR
+================================================== -->
+
+<nav class="navbar">
+
+    <div class="navbar-container">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                🅿️
+            </span>
+
+            <span>
+                ParkEase
+            </span>
+
+        </div>
+
+        <div class="nav-subtitle">
+            Smart Parking Reservation
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==================================================
+     MAIN
+================================================== -->
+
+<main class="container">
+
+
+    <!-- ==================================================
+         HERO
+    ================================================== -->
+
+    <section class="hero">
+
+        <div>
+
+            <p class="eyebrow">
+                SMART PARKING
+            </p>
+
+            <h1>
+                Find your parking spot
+                <span>in seconds.</span>
+            </h1>
+
+            <p class="hero-description">
+                Check live parking availability and
+                reserve your preferred slot instantly.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         SEARCH CARD
+    ================================================== -->
+
+    <section class="search-card">
+
+        <div class="search-header">
+
+            <div>
+
+                <h2>
+                    Check Availability
+                </h2>
+
+                <p>
+                    Select when you need parking.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            action="/"
+            method="GET"
+            class="search-form"
+        >
+
+            <div class="form-group">
+
+                <label for="date">
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    value="{{ selected_date }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="time">
+                    Start Time
+                </label>
+
+                <input
+                    type="time"
+                    id="time"
+                    name="time"
+                    value="{{ selected_time }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="duration">
+                    Duration
+                </label>
+
+                <select
+                    id="duration"
+                    name="duration"
+                    required
+                >
+
+                    <option value="">
+                        Select duration
+                    </option>
+
+                    <option
+                        value="1"
+                        {% if selected_duration == "1" %}
+                        selected
+                        {% endif %}
+                    >
+                        1 Hour
+                    </option>
+
+                    <option
+                        value="2"
+                        {% if selected_duration == "2" %}
+                        selected
+                        {% endif %}
+                    >
+                        2 Hours
+                    </option>
+
+                    <option
+                        value="3"
+                        {% if selected_duration == "3" %}
+                        selected
+                        {% endif %}
+                    >
+                        3 Hours
+                    </option>
+
+                    <option
+                        value="4"
+                        {% if selected_duration == "4" %}
+                        selected
+                        {% endif %}
+                    >
+                        4 Hours
+                    </option>
+
+                    <option
+                        value="5"
+                        {% if selected_duration == "5" %}
+                        selected
+                        {% endif %}
+                    >
+                        5 Hours
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="search-button"
+            >
+                🔍 Check Availability
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- ==================================================
+         SEARCH RESULT MESSAGE
+    ================================================== -->
+
+    {% if search_active %}
+
+    <div class="search-result">
+
+        <div>
+
+            <strong>
+                Availability for
+            </strong>
+
+            {{ selected_date }}
+
+            at
+
+            {{ selected_time }}
+
+            for
+
+            {{ selected_duration }} hour(s)
+
+        </div>
+
+
+        <a
+            href="/"
+            class="clear-search"
+        >
+            Clear
+        </a>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ==================================================
+         PARKING AREA
+    ================================================== -->
+
+    <section class="parking-section">
+
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Parking Area
+                </h2>
+
+                <p>
+                    Live status of all parking slots
+                </p>
+
+            </div>
+
+
+            <div class="legend">
+
+                <div class="legend-item">
+
+                    <span class="legend-dot available-dot"></span>
+
+                    Available
+
+                </div>
+
+
+                <div class="legend-item">
+
+                    <span class="legend-dot upcoming-dot"></span>
+
+                    Reserved
+
+                </div>
+
+
+                <div class="legend-item">
+
+                    <span class="legend-dot occupied-dot"></span>
+
+                    Occupied
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================
+             PARKING GRID
+        ================================================== -->
+
+        <div class="parking-grid">
+
+
+            {% for slot in slots %}
+
+
+                <!-- ==================================================
+                     SEARCH MODE
+                ================================================== -->
+
+                {% if search_active %}
+
+
+                    {% if slot.search_conflict %}
+
+
+                        <!-- UNAVAILABLE FOR SELECTED TIME -->
+
+                        <div
+                            class="parking-slot search-unavailable"
+                        >
+
+                            <div class="slot-number">
+                                {{ slot.slot_number }}
+                            </div>
+
+                            <div class="slot-car">
+                                🚗
+                            </div>
+
+                            <div class="slot-status">
+                                Unavailable
+                            </div>
+
+                            <div class="unavailable-text">
+                                Booked for selected time
+                            </div>
+
+                        </div>
+
+
+                    {% else %}
+
+
+                        <!-- AVAILABLE FOR SELECTED TIME -->
+
+                        <a
+                            href="/book/{{ slot.id }}?date={{ selected_date }}&time={{ selected_time }}&duration={{ selected_duration }}"
+                            class="parking-slot available-slot"
+                        >
+
+                            <div class="slot-number">
+                                {{ slot.slot_number }}
+                            </div>
+
+                            <div class="slot-car">
+                                🅿️
+                            </div>
+
+                            <div class="slot-status">
+                                Available
+                            </div>
+
+                            <div class="book-now">
+                                Book Now →
+                            </div>
+
+                        </a>
+
+
+                    {% endif %}
+
+
+                <!-- ==================================================
+                     LIVE MODE
+                ================================================== -->
+
+                {% else %}
+
+
+                    <!-- ==================================================
+                         OCCUPIED
+                    ================================================== -->
+
+                    {% if slot.booking_state == "occupied" %}
+
+
+                        <div
+                            class="parking-slot occupied-slot"
+
+                            data-countdown-type="occupied"
+
+                            data-end-time="{{ slot.current_booking['end_datetime'] }}"
+                        >
+
+                            <div class="slot-number">
+                                {{ slot.slot_number }}
+                            </div>
+
+                            <div class="slot-car">
+                                🚗
+                            </div>
+
+                            <div class="slot-status">
+                                Occupied
+                            </div>
+
+
+                            <div class="countdown">
+
+                                <span class="countdown-time">
+                                    Calculating...
+                                </span>
+
+                                <small>
+                                    remaining
+                                </small>
+
+                            </div>
+
+
+                            <div class="available-at">
+
+                                Available at
+
+                                <strong>
+                                    {{ slot.current_booking['end_datetime'][11:16] }}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                    <!-- ==================================================
+                         UPCOMING / RESERVED
+                    ================================================== -->
+
+                    {% elif slot.booking_state == "upcoming" %}
+
+
+                        <div
+                            class="parking-slot upcoming-slot"
+
+                            data-countdown-type="upcoming"
+
+                            data-start-time="{{ slot.current_booking['start_datetime'] }}"
+                        >
+
+                            <div class="slot-number">
+                                {{ slot.slot_number }}
+                            </div>
+
+                            <div class="slot-car">
+                                🚗
+                            </div>
+
+                            <div class="slot-status">
+                                Reserved
+                            </div>
+
+
+                            <div class="countdown">
+
+                                <span class="countdown-time">
+                                    Calculating...
+                                </span>
+
+                                <small>
+                                    until start
+                                </small>
+
+                            </div>
+
+
+                            <div class="available-at">
+
+                                Starts at
+
+                                <strong>
+                                    {{ slot.current_booking['start_datetime'][11:16] }}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                    <!-- ==================================================
+                         AVAILABLE
+                    ================================================== -->
+
+                    {% else %}
+
+
+                        <a
+                            href="/book/{{ slot.id }}"
+                            class="parking-slot available-slot"
+                        >
+
+                            <div class="slot-number">
+                                {{ slot.slot_number }}
+                            </div>
+
+                            <div class="slot-car">
+                                🅿️
+                            </div>
+
+                            <div class="slot-status">
+                                Available
+                            </div>
+
+                            <div class="book-now">
+                                Book Now →
+                            </div>
+
+                        </a>
+
+
+                    {% endif %}
+
+
+                {% endif %}
+
+
+            {% endfor %}
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         FOOTER INFO
+    ================================================== -->
+
+    <section class="info-card">
+
+        <div class="info-icon">
+            💡
+        </div>
+
+        <div>
+
+            <strong>
+                Live parking status
+            </strong>
+
+            <p>
+                Reserved slots automatically become
+                occupied when their booking starts.
+                The countdown updates every second.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- ==================================================
+     COUNTDOWN JAVASCRIPT
+================================================== -->
+
+<script>
+
+
+/*
+==================================================
+Convert SQLite datetime into JavaScript local time
+==================================================
+*/
+
+function parseLocalDateTime(value) {
+
+    return new Date(
+        value.replace(" ", "T")
+    );
+
+}
+
+
+/*
+==================================================
+Format countdown
+==================================================
+*/
+
+function formatCountdown(milliseconds) {
+
+    if (milliseconds <= 0) {
+
+        return "00:00:00";
+
+    }
+
+
+    const totalSeconds = Math.floor(
+        milliseconds / 1000
+    );
+
+
+    const hours = Math.floor(
+        totalSeconds / 3600
+    );
+
+
+    const minutes = Math.floor(
+        (totalSeconds % 3600) / 60
+    );
+
+
+    const seconds = totalSeconds % 60;
+
+
+    return (
+
+        String(hours).padStart(2, "0")
+
+        + ":"
+
+        + String(minutes).padStart(2, "0")
+
+        + ":"
+
+        + String(seconds).padStart(2, "0")
+
+    );
+
+}
+
+
+/*
+==================================================
+UPDATE ALL COUNTDOWNS
+==================================================
+*/
+
+function updateCountdowns() {
+
+    const now = new Date();
+
+
+    const slots = document.querySelectorAll(
+        "[data-countdown-type]"
+    );
+
+
+    slots.forEach(function(slot) {
+
+
+        const type =
+            slot.dataset.countdownType;
+
+
+        let target;
+
+
+        /*
+        ------------------------------------------
+        OCCUPIED
+        Target = booking end time
+        ------------------------------------------
+        */
+
+        if (type === "occupied") {
+
+            target = parseLocalDateTime(
+                slot.dataset.endTime
+            );
+
+        }
+
+
+        /*
+        ------------------------------------------
+        UPCOMING
+        Target = booking start time
+        ------------------------------------------
+        */
+
+        else {
+
+            target = parseLocalDateTime(
+                slot.dataset.startTime
+            );
+
+        }
+
+
+        const difference =
+            target.getTime() - now.getTime();
+
+
+        const countdown =
+            slot.querySelector(
+                ".countdown-time"
+            );
+
+
+        /*
+        ------------------------------------------
+        BOOKING TIME REACHED
+        ------------------------------------------
+        */
+
+        if (difference <= 0) {
+
+            countdown.textContent =
+                "00:00:00";
+
+
+            /*
+            Reload after a short delay.
+            This allows Flask to recalculate
+            the slot state.
+            */
+
+            setTimeout(function() {
+
+                location.reload();
+
+            }, 1000);
+
+
+            return;
+
+        }
+
+
+        /*
+        ------------------------------------------
+        UPDATE TIMER
+        ------------------------------------------
+        */
+
+        countdown.textContent =
+            formatCountdown(difference);
+
+    });
+
+}
+
+
+/*
+==================================================
+START COUNTDOWN
+==================================================
+*/
+
+updateCountdowns();
+
+
+setInterval(
+    updateCountdowns,
+    1000
+);
+
+
+</script>
+
+
+</body>
+
+</html>

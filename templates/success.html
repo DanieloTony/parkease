@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Booking Confirmed - ParkEase
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     NAVBAR
+================================================== -->
+
+<nav class="navbar">
+
+    <div class="navbar-container">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                🅿️
+            </span>
+
+            <span>
+                ParkEase
+            </span>
+
+        </div>
+
+        <div class="nav-subtitle">
+            Smart Parking Reservation
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==================================================
+     SUCCESS PAGE
+================================================== -->
+
+<main class="success-container">
+
+
+    <div class="success-card">
+
+
+        <!-- SUCCESS ICON -->
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h1>
+            Booking Confirmed!
+        </h1>
+
+
+        <p class="success-message">
+            Your parking slot has been successfully reserved.
+        </p>
+
+
+        <!-- BOOKING ID -->
+
+        <div class="booking-id">
+
+            <span>
+                Booking ID
+            </span>
+
+            <strong>
+                PK{{ booking_id }}
+            </strong>
+
+        </div>
+
+
+        <!-- BOOKING DETAILS -->
+
+        <div class="booking-details">
+
+
+            <div class="booking-row">
+
+                <span>
+                    Parking Slot
+                </span>
+
+                <strong>
+                    {{ slot["slot_number"] }}
+                </strong>
+
+            </div>
+
+
+            <div class="booking-row">
+
+                <span>
+                    Name
+                </span>
+
+                <strong>
+                    {{ name }}
+                </strong>
+
+            </div>
+
+
+            <div class="booking-row">
+
+                <span>
+                    Phone
+                </span>
+
+                <strong>
+                    {{ phone }}
+                </strong>
+
+            </div>
+
+
+            <div class="booking-row">
+
+                <span>
+                    Date
+                </span>
+
+                <strong>
+                    {{ start_datetime.split(" ")[0] }}
+                </strong>
+
+            </div>
+
+
+            <div class="booking-row">
+
+                <span>
+                    Start Time
+                </span>
+
+                <strong>
+                    {{ start_datetime.split(" ")[1] }}
+                    {{ start_datetime.split(" ")[2] }}
+                </strong>
+
+            </div>
+
+
+            <div class="booking-row">
+
+                <span>
+                    Duration
+                </span>
+
+                <strong>
+
+                    {{ duration_hours }}
+
+                    hour{% if duration_hours != 1 %}s{% endif %}
+
+                </strong>
+
+            </div>
+
+
+            <div class="booking-row">
+
+                <span>
+                    End Time
+                </span>
+
+                <strong>
+                    {{ end_datetime }}
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="success-status">
+
+            <span>
+                🟢
+            </span>
+
+            Your booking is active in ParkEase.
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="success-actions">
+
+
+            <a
+                href="/"
+                class="primary-button"
+            >
+                ← Back to Parking
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

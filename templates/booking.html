@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Book {{ slot["slot_number"] }} - ParkEase
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     NAVBAR
+================================================== -->
+
+<nav class="navbar">
+
+    <div class="navbar-container">
+
+        <a href="/" class="logo" style="text-decoration: none;">
+
+            <span class="logo-icon">
+                🅿️
+            </span>
+
+            <span>
+                ParkEase
+            </span>
+
+        </a>
+
+        <div class="nav-subtitle">
+            Smart Parking Reservation
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ==================================================
+     BOOKING PAGE
+================================================== -->
+
+<main class="booking-container">
+
+
+    <!-- BACK BUTTON -->
+
+    <a
+        href="/"
+        class="back-link"
+    >
+        ← Back to parking
+    </a>
+
+
+    <!-- BOOKING CARD -->
+
+    <div class="booking-card">
+
+
+        <!-- HEADER -->
+
+        <div class="booking-header">
+
+            <div class="booking-icon">
+                🅿️
+            </div>
+
+            <div>
+
+                <p class="booking-label">
+                    PARKING RESERVATION
+                </p>
+
+                <h1>
+                    Book {{ slot["slot_number"] }}
+                </h1>
+
+                <p>
+                    Confirm your parking reservation
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================
+             BOOKING FORM
+        ================================================== -->
+
+        <form
+            action="/book"
+            method="POST"
+            id="bookingForm"
+        >
+
+
+            <!-- SLOT ID -->
+
+            <input
+                type="hidden"
+                name="slot_id"
+                value="{{ slot['id'] }}"
+            >
+
+
+            <!-- ==================================================
+                 PERSONAL INFORMATION
+            ================================================== -->
+
+            <div class="form-section">
+
+                <h2>
+                    Your Details
+                </h2>
+
+                <p class="form-section-description">
+                    Enter your contact information.
+                </p>
+
+
+                <!-- NAME -->
+
+                <div class="booking-form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required
+                        autocomplete="name"
+                    >
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="booking-form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your phone number"
+                        required
+                        maxlength="10"
+                        pattern="[0-9]{10}"
+                        autocomplete="tel"
+                    >
+
+                    <small class="input-help">
+                        Enter a 10-digit mobile number.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 PARKING DETAILS
+            ================================================== -->
+
+            <div class="form-section">
+
+                <h2>
+                    Parking Details
+                </h2>
+
+                <p class="form-section-description">
+                    Select your parking date and duration.
+                </p>
+
+
+                <!-- DATE -->
+
+                <div class="booking-form-group">
+
+                    <label for="booking_date">
+                        Parking Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="booking_date"
+                        name="booking_date"
+                        value="{{ selected_date }}"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- TIME -->
+
+                <div class="booking-form-group">
+
+                    <label for="booking_time">
+                        Start Time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="booking_time"
+                        name="booking_time"
+                        value="{{ selected_time }}"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DURATION -->
+
+                <div class="booking-form-group">
+
+                    <label for="duration_hours">
+                        Parking Duration
+                    </label>
+
+                    <select
+                        id="duration_hours"
+                        name="duration_hours"
+                        required
+                    >
+
+                        <option value="1"
+                            {% if selected_duration == "1" or not selected_duration %}
+                            selected
+                            {% endif %}
+                        >
+                            1 Hour
+                        </option>
+
+                        <option value="2"
+                            {% if selected_duration == "2" %}
+                            selected
+                            {% endif %}
+                        >
+                            2 Hours
+                        </option>
+
+                        <option value="3"
+                            {% if selected_duration == "3" %}
+                            selected
+                            {% endif %}
+                        >
+                            3 Hours
+                        </option>
+
+                        <option value="4"
+                            {% if selected_duration == "4" %}
+                            selected
+                            {% endif %}
+                        >
+                            4 Hours
+                        </option>
+
+                        <option value="5"
+                            {% if selected_duration == "5" %}
+                            selected
+                            {% endif %}
+                        >
+                            5 Hours
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 BOOKING PREVIEW
+            ================================================== -->
+
+            <div class="booking-preview">
+
+                <div class="preview-header">
+
+                    <span>
+                        📅
+                    </span>
+
+                    <strong>
+                        Booking Preview
+                    </strong>
+
+                </div>
+
+
+                <div class="preview-content">
+
+                    <div class="preview-time">
+
+                        <span
+                            id="previewStart"
+                        >
+                            Select time
+                        </span>
+
+                        <span class="preview-arrow">
+                            →
+                        </span>
+
+                        <span
+                            id="previewEnd"
+                        >
+                            Select duration
+                        </span>
+
+                    </div>
+
+
+                    <div class="preview-info">
+
+                        <span>
+                            📍 Slot
+                        </span>
+
+                        <strong>
+                            {{ slot["slot_number"] }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 CONFIRM BUTTON
+            ================================================== -->
+
+            <button
+                type="submit"
+                class="confirm-button"
+            >
+
+                Confirm Booking
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+</main>
+
+
+<!-- ==================================================
+     BOOKING PREVIEW JAVASCRIPT
+================================================== -->
+
+<script>
+
+
+// --------------------------------------------------
+// GET ELEMENTS
+// --------------------------------------------------
+
+const dateInput =
+    document.getElementById("booking_date");
+
+const timeInput =
+    document.getElementById("booking_time");
+
+const durationInput =
+    document.getElementById("duration_hours");
+
+const previewStart =
+    document.getElementById("previewStart");
+
+const previewEnd =
+    document.getElementById("previewEnd");
+
+
+// --------------------------------------------------
+// FORMAT TIME
+// --------------------------------------------------
+
+function formatTime(date) {
+
+    return date.toLocaleTimeString(
+        [],
+        {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+        }
+    );
+
+}
+
+
+// --------------------------------------------------
+// UPDATE BOOKING PREVIEW
+// --------------------------------------------------
+
+function updatePreview() {
+
+    const timeValue =
+        timeInput.value;
+
+    const durationValue =
+        durationInput.value;
+
+
+    // No time selected
+
+    if (!timeValue) {
+
+        previewStart.textContent =
+            "Select time";
+
+        previewEnd.textContent =
+            "Select duration";
+
+        return;
+
+    }
+
+
+    // Parse HH:MM
+
+    const parts =
+        timeValue.split(":");
+
+
+    const hours =
+        parseInt(parts[0]);
+
+    const minutes =
+        parseInt(parts[1]);
+
+
+    // Create date
+
+    const start =
+        new Date();
+
+    start.setHours(
+        hours,
+        minutes,
+        0,
+        0
+    );
+
+
+    // Duration
+
+    const duration =
+        parseInt(durationValue || "1");
+
+
+    // Calculate end
+
+    const end =
+        new Date(
+            start.getTime()
+            +
+            duration * 60 * 60 * 1000
+        );
+
+
+    // Display
+
+    previewStart.textContent =
+        formatTime(start);
+
+
+    previewEnd.textContent =
+        formatTime(end);
+
+}
+
+
+// --------------------------------------------------
+// LISTEN FOR CHANGES
+// --------------------------------------------------
+
+timeInput.addEventListener(
+    "change",
+    updatePreview
+);
+
+
+durationInput.addEventListener(
+    "change",
+    updatePreview
+);
+
+
+dateInput.addEventListener(
+    "change",
+    updatePreview
+);
+
+
+// --------------------------------------------------
+// INITIAL PREVIEW
+// --------------------------------------------------
+
+updatePreview();
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1703 @@
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: #f6f8fb;
+
+    color: #111827;
+
+    min-height: 100vh;
+
+}
+
+
+/* ==================================================
+   NAVBAR
+================================================== */
+
+.navbar {
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+}
+
+
+.navbar-container {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 18px 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    color: #111827;
+
+}
+
+
+.logo-icon {
+
+    font-size: 27px;
+
+}
+
+
+.nav-subtitle {
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+}
+
+
+/* ==================================================
+   MAIN CONTAINER
+================================================== */
+
+.container {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 55px 24px;
+
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero {
+
+    margin-bottom: 35px;
+
+}
+
+
+.eyebrow {
+
+    color: #2563eb;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.hero h1 {
+
+    font-size: 44px;
+
+    line-height: 1.15;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.hero h1 span {
+
+    color: #2563eb;
+
+}
+
+
+.hero-description {
+
+    color: #6b7280;
+
+    font-size: 17px;
+
+    max-width: 650px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==================================================
+   SEARCH CARD
+================================================== */
+
+.search-card {
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 8px 30px rgba(15, 23, 42, 0.05);
+
+}
+
+
+.search-header {
+
+    margin-bottom: 22px;
+
+}
+
+
+.search-header h2 {
+
+    font-size: 21px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.search-header p {
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+}
+
+
+/* ==================================================
+   SEARCH FORM
+================================================== */
+
+.search-form {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        1fr
+        auto;
+
+    gap: 15px;
+
+    align-items: end;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.form-group label {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #374151;
+
+}
+
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    outline: none;
+
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+
+}
+
+
+.search-button {
+
+    height: 46px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 0 22px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.search-button:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* ==================================================
+   SEARCH RESULT
+================================================== */
+
+.search-result {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    color: #1e40af;
+
+    padding: 14px 18px;
+
+    border-radius: 12px;
+
+    margin-bottom: 25px;
+
+    font-size: 14px;
+
+}
+
+
+.clear-search {
+
+    color: #1d4ed8;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+}
+
+
+.clear-search:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* ==================================================
+   PARKING SECTION
+================================================== */
+
+.parking-section {
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 8px 30px rgba(15, 23, 42, 0.05);
+
+}
+
+
+.section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 28px;
+
+}
+
+
+.section-header h2 {
+
+    font-size: 22px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.section-header p {
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+}
+
+
+/* ==================================================
+   LEGEND
+================================================== */
+
+.legend {
+
+    display: flex;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+}
+
+
+.legend-dot {
+
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+}
+
+
+.available-dot {
+
+    background: #22c55e;
+
+}
+
+
+.upcoming-dot {
+
+    background: #f59e0b;
+
+}
+
+
+.occupied-dot {
+
+    background: #ef4444;
+
+}
+
+
+/* ==================================================
+   PARKING GRID
+================================================== */
+
+.parking-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 18px;
+
+}
+
+
+/* ==================================================
+   PARKING SLOT
+================================================== */
+
+.parking-slot {
+
+    min-height: 205px;
+
+    border-radius: 15px;
+
+    padding: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    position: relative;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+
+    text-decoration: none;
+
+}
+
+
+.parking-slot:hover {
+
+    transform: translateY(-3px);
+
+}
+
+
+/* ==================================================
+   SLOT NUMBER
+================================================== */
+
+.slot-number {
+
+    position: absolute;
+
+    top: 12px;
+
+    left: 14px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+}
+
+
+/* ==================================================
+   CAR
+================================================== */
+
+.slot-car {
+
+    font-size: 38px;
+
+    margin-bottom: 8px;
+
+}
+
+
+/* ==================================================
+   STATUS
+================================================== */
+
+.slot-status {
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    margin-bottom: 8px;
+
+}
+
+
+/* ==================================================
+   AVAILABLE
+================================================== */
+
+.available-slot {
+
+    background: #ecfdf5;
+
+    border: 2px solid #86efac;
+
+    color: #166534;
+
+}
+
+
+.available-slot:hover {
+
+    box-shadow:
+        0 12px 25px rgba(34, 197, 94, 0.15);
+
+}
+
+
+.book-now {
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-top: 5px;
+
+}
+
+
+/* ==================================================
+   UPCOMING / RESERVED
+================================================== */
+
+.upcoming-slot {
+
+    background: #fffbeb;
+
+    border: 2px solid #fcd34d;
+
+    color: #92400e;
+
+    cursor: not-allowed;
+
+}
+
+
+.upcoming-slot:hover {
+
+    transform: none;
+
+    box-shadow: none;
+
+}
+
+
+.upcoming-slot .slot-car {
+
+    opacity: 0.75;
+
+}
+
+
+.upcoming-slot .countdown-time {
+
+    color: #d97706;
+
+}
+
+
+.upcoming-slot .available-at {
+
+    color: #a16207;
+
+}
+
+
+.upcoming-slot .available-at strong {
+
+    color: #92400e;
+
+}
+
+
+/* ==================================================
+   OCCUPIED
+================================================== */
+
+.occupied-slot {
+
+    background: #fef2f2;
+
+    border: 2px solid #fca5a5;
+
+    color: #991b1b;
+
+    cursor: not-allowed;
+
+}
+
+
+.occupied-slot:hover {
+
+    transform: none;
+
+    box-shadow: none;
+
+}
+
+
+.occupied-slot .countdown-time {
+
+    color: #dc2626;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    font-variant-numeric: tabular-nums;
+
+}
+
+
+/* ==================================================
+   COUNTDOWN
+================================================== */
+
+.countdown {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    margin: 5px 0 8px;
+
+}
+
+
+.countdown-time {
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    font-variant-numeric: tabular-nums;
+
+}
+
+
+.countdown small {
+
+    font-size: 11px;
+
+    opacity: 0.7;
+
+    margin-top: 2px;
+
+}
+
+
+/* ==================================================
+   AVAILABLE AT
+================================================== */
+
+.available-at {
+
+    font-size: 11px;
+
+    opacity: 0.8;
+
+}
+
+
+.available-at strong {
+
+    margin-left: 3px;
+
+}
+
+
+/* ==================================================
+   SEARCH UNAVAILABLE
+================================================== */
+
+.search-unavailable {
+
+    background: #f9fafb;
+
+    border: 2px solid #d1d5db;
+
+    color: #6b7280;
+
+    cursor: not-allowed;
+
+}
+
+
+.search-unavailable:hover {
+
+    transform: none;
+
+    box-shadow: none;
+
+}
+
+
+.unavailable-text {
+
+    font-size: 11px;
+
+    margin-top: 3px;
+
+}
+
+
+/* ==================================================
+   INFO CARD
+================================================== */
+
+.info-card {
+
+    margin-top: 25px;
+
+    background: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 15px;
+
+    padding: 18px;
+
+    display: flex;
+
+    gap: 13px;
+
+    align-items: flex-start;
+
+}
+
+
+.info-icon {
+
+    font-size: 21px;
+
+}
+
+
+.info-card strong {
+
+    color: #1e40af;
+
+    font-size: 14px;
+
+}
+
+
+.info-card p {
+
+    color: #3b82f6;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-top: 4px;
+
+}
+
+
+/* ==================================================
+   SUCCESS PAGE
+================================================== */
+
+.success-container {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    padding: 70px 24px;
+
+}
+
+
+.success-card {
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px rgba(15, 23, 42, 0.08);
+
+}
+
+
+.success-icon {
+
+    width: 70px;
+
+    height: 70px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: #dcfce7;
+
+    color: #16a34a;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 38px;
+
+    font-weight: 800;
+
+}
+
+
+.success-card h1 {
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.success-message {
+
+    color: #6b7280;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* ==================================================
+   BOOKING ID
+================================================== */
+
+.booking-id {
+
+    background: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.booking-id span {
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+}
+
+
+.booking-id strong {
+
+    color: #2563eb;
+
+    font-size: 18px;
+
+}
+
+
+/* ==================================================
+   BOOKING DETAILS
+================================================== */
+
+.booking-details {
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    text-align: left;
+
+}
+
+
+.booking-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 14px 16px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    gap: 20px;
+
+}
+
+
+.booking-row:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.booking-row span {
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+}
+
+
+.booking-row strong {
+
+    color: #111827;
+
+    font-size: 14px;
+
+    text-align: right;
+
+}
+
+
+/* ==================================================
+   SUCCESS STATUS
+================================================== */
+
+.success-status {
+
+    margin-top: 20px;
+
+    background: #f0fdf4;
+
+    color: #166534;
+
+    border: 1px solid #bbf7d0;
+
+    border-radius: 10px;
+
+    padding: 12px;
+
+    font-size: 13px;
+
+}
+
+
+/* ==================================================
+   SUCCESS ACTIONS
+================================================== */
+
+.success-actions {
+
+    margin-top: 25px;
+
+}
+
+
+.primary-button {
+
+    display: inline-block;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    padding: 13px 22px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: 0.2s;
+
+}
+
+
+.primary-button:hover {
+
+    background: #1d4ed8;
+
+}
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 950px) {
+
+    .parking-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+
+    .search-form {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .search-button {
+
+        width: 100%;
+
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .container {
+
+        padding: 35px 15px;
+
+    }
+
+
+    .navbar-container {
+
+        padding: 15px;
+
+    }
+
+
+    .nav-subtitle {
+
+        display: none;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 34px;
+
+    }
+
+
+    .search-form {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .parking-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+
+    }
+
+
+    .parking-section {
+
+        padding: 18px;
+
+    }
+
+
+    .section-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .parking-slot {
+
+        min-height: 185px;
+
+        padding: 14px;
+
+    }
+
+
+    .legend {
+
+        gap: 10px;
+
+    }
+
+
+    .success-card {
+
+        padding: 25px 18px;
+
+    }
+
+
+    .success-card h1 {
+
+        font-size: 25px;
+
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .parking-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+/* ==================================================
+   BOOKING PAGE
+================================================== */
+
+.booking-container {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    padding: 45px 24px 70px;
+
+}
+
+
+.back-link {
+
+    display: inline-block;
+
+    margin-bottom: 20px;
+
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+}
+
+
+.back-link:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* ==================================================
+   BOOKING CARD
+================================================== */
+
+.booking-card {
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 15px 40px rgba(15, 23, 42, 0.07);
+
+}
+
+
+/* ==================================================
+   BOOKING HEADER
+================================================== */
+
+.booking-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding-bottom: 28px;
+
+    margin-bottom: 28px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+}
+
+
+.booking-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    background: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+
+}
+
+
+.booking-label {
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.booking-header h1 {
+
+    font-size: 30px;
+
+    line-height: 1.2;
+
+    margin-bottom: 4px;
+
+}
+
+
+.booking-header p:last-child {
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+}
+
+
+/* ==================================================
+   FORM SECTION
+================================================== */
+
+.form-section {
+
+    margin-bottom: 30px;
+
+}
+
+
+.form-section h2 {
+
+    font-size: 18px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.form-section-description {
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* ==================================================
+   FORM GROUP
+================================================== */
+
+.booking-form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.booking-form-group label {
+
+    color: #374151;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.booking-form-group input,
+.booking-form-group select {
+
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+
+}
+
+
+.booking-form-group input:focus,
+.booking-form-group select:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+
+}
+
+
+.input-help {
+
+    color: #9ca3af;
+
+    font-size: 11px;
+
+}
+
+
+/* ==================================================
+   BOOKING PREVIEW
+================================================== */
+
+.booking-preview {
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    margin-top: 5px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.preview-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 13px 16px;
+
+    background: #f1f5f9;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    font-size: 13px;
+
+}
+
+
+.preview-content {
+
+    padding: 20px 16px;
+
+}
+
+
+.preview-time {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    margin-bottom: 15px;
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    color: #111827;
+
+}
+
+
+.preview-arrow {
+
+    color: #2563eb;
+
+    font-size: 20px;
+
+}
+
+
+.preview-info {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+}
+
+
+.preview-info strong {
+
+    color: #111827;
+
+}
+
+
+/* ==================================================
+   CONFIRM BUTTON
+================================================== */
+
+.confirm-button {
+
+    width: 100%;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.confirm-button:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.20);
+
+}
+
+
+.confirm-button span {
+
+    margin-left: 6px;
+
+}
+
+
+/* ==================================================
+   MOBILE BOOKING PAGE
+================================================== */
+
+@media (max-width: 600px) {
+
+    .booking-container {
+
+        padding:
+            30px 15px 50px;
+
+    }
+
+
+    .booking-card {
+
+        padding: 23px 18px;
+
+        border-radius: 16px;
+
+    }
+
+
+    .booking-header {
+
+        align-items: flex-start;
+
+    }
+
+
+    .booking-header h1 {
+
+        font-size: 25px;
+
+    }
+
+
+    .booking-icon {
+
+        width: 50px;
+
+        height: 50px;
+
+        font-size: 25px;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .preview-time {
+
+        font-size: 18px;
+
+        gap: 9px;
+
+    }
+
+}
